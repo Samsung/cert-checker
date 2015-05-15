@@ -1,0 +1,34 @@
+PKG_CHECK_MODULES(CERT_CHECKER_DEP
+    REQUIRED
+    dbus-1
+    dbus-glib-1
+    glib-2.0
+    gio-2.0
+    capi-appfw-package-manager
+    notification
+    libsystemd-journal
+    )
+
+SET(CERT_CHECKER_SRC_PATH ${PROJECT_SOURCE_DIR}/src)
+
+SET(CERT_CHECKER_SOURCES
+    ${CERT_CHECKER_SRC_PATH}/cert-checker.cpp
+    ${CERT_CHECKER_SRC_PATH}/app.cpp
+    ${CERT_CHECKER_SRC_PATH}/logic.cpp
+    # logs
+    ${CERT_CHECKER_SRC_PATH}/log/log.cpp
+    )
+
+INCLUDE_DIRECTORIES(SYSTEM
+    ${CERT_CHECKER_DEP_INCLUDE_DIRS}
+    ${CERT_CHECKER_SRC_PATH}/include/
+    ${CERT_CHECKER_SRC_PATH}/log/
+    )
+
+ADD_EXECUTABLE(${TARGET_CERT_CHECKER} ${CERT_CHECKER_SOURCES})
+
+TARGET_LINK_LIBRARIES(${TARGET_CERT_CHECKER}
+    ${CERT_CHECKER_DEP_LIBRARIES}
+    )
+
+INSTALL(TARGETS ${TARGET_CERT_CHECKER} DESTINATION ${BINDIR})
