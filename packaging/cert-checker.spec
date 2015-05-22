@@ -7,12 +7,16 @@ License:    Apache-2.0
 Source0:    %{name}-%{version}.tar.gz
 BuildRequires: cmake
 BuildRequires: zip
+BuildRequires: pkgconfig(db-util)
+BuildRequires: pkgconfig(icu-i18n)
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(capi-appfw-package-manager)
 BuildRequires: pkgconfig(notification)
 BuildRequires: pkgconfig(dbus-1)
 BuildRequires: pkgconfig(dbus-glib-1)
 BuildRequires: pkgconfig(libsystemd-journal)
+BuildRequires: pkgconfig(sqlite3)
+
 
 %description
 Cert-checker
